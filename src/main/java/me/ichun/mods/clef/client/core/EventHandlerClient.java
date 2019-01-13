@@ -129,26 +129,6 @@ public class EventHandlerClient
         return null;
     }
 
-    @SubscribeEvent
-    public void onLeftClickEmpty(PlayerInteractEvent.LeftClickEmpty event)
-    {
-        ItemStack is = ItemInstrument.getUsableInstrument(event.getEntityPlayer());
-        if(!is.isEmpty() && !(!event.getEntityPlayer().getHeldItemMainhand().isEmpty() && !event.getEntityPlayer().getHeldItemOffhand().isEmpty()))
-        {
-            stopPlayingTrack(event.getEntityPlayer());
-        }
-    }
-
-    @SubscribeEvent
-    public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event)
-    {
-        ItemStack is = ItemInstrument.getUsableInstrument(event.getEntityPlayer());
-        if(!is.isEmpty() && !(!event.getEntityPlayer().getHeldItemMainhand().isEmpty() && !event.getEntityPlayer().getHeldItemOffhand().isEmpty()))
-        {
-            stopPlayingTrack(event.getEntityPlayer());
-        }
-    }
-
     public void stopPlayingTrack(EntityPlayer player)
     {
         Track track = getTrackPlayedByPlayer(player);

@@ -51,7 +51,7 @@ public class ItemInstrument extends Item
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack is = player.getHeldItem(hand);
-        if(is.getTagCompound() == null && !world.isRemote)
+        if(is.getItem() == Clef.itemInstrument && is.getTagCompound() == null && !world.isRemote)
         {
             InstrumentLibrary.assignRandomInstrument(is);
         }
@@ -73,16 +73,6 @@ public class ItemInstrument extends Item
             return new ActionResult<>(EnumActionResult.SUCCESS, is);
         }
         return new ActionResult<>(EnumActionResult.FAIL, is);
-    }
-
-    @Override
-    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
-    {
-        if (player.world.isRemote) //is fired on the server as well
-        {
-            Clef.eventHandlerClient.stopPlayingTrack(player);
-        }
-        return false;
     }
 
     @SideOnly(Side.CLIENT)
